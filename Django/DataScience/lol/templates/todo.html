@@ -1,0 +1,160 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block content %}
+
+{% if error %}
+    <script>
+        showAlert('{{ error }}');
+    </script>
+{% endif %}
+
+<div class="row">
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-md-1 col-lg-1">
+            <img src="{% static '/images/icons8-to-do-64.png' %}" alt="" class="rounded-circle" style="width: auto;">   
+        </div>
+        <div class="col-md-11 col-lg-11 d-flex justify-content-between align-items-center">
+            <span class="h3">To Do </span>
+        </div>
+    </div>
+    <div class="row">
+        <hr width="100%" align="center" size="5px" style="background-color: #CC00CC;"/>
+    </div>
+    <div class="row" style="margin-top: 60px;">
+        <div class="col-md-3 col-lg-3" style="border-width:2px; border-style:none solid none none; border-color:black;">
+            <div class="row">
+                <div class="col-md-1 col-lg-1">
+                </div>
+                <div class="col-md-11 col-lg-8">
+                    <span class="h5">TODO LIST</span>
+                </div>
+            </div>
+            <div class="row">
+                <div>
+                    <hr size="5px"/>
+                </div>
+            </div>
+            <div class="row">
+                <form action="{% url 'create_todo' %}" method="POST" class="row" style="border: 0;">{% csrf_token %}
+                    <div class="col-md-9 col-lg-9 d-flex justify-content-between align-items-center">
+                        <input name="todo_name" type="text" placeholder="Enter here" class="form-control"/>
+                    </div>
+                    <div class="col-md-3 col-lg-3 d-flex justify-content-between align-items-center">
+                        <button type="submit" class="btn">
+                            <img src="{% static '/images/icons8-add-property-24.png' %}" alt="">
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="row" style="overflow-y: scroll;">
+                {% if todos %}
+                    {% for todo in todos %}
+                    <div class="row">
+                        <div class="col-md-10 col-lg-10">
+                            <a class="todo" style="text-decoration: none;" href="{% url 'todo_detail' todo.id %}">
+                                {{ todo.title }}
+                            </a>
+                        </div>
+                        <div class="col-md-2 col-lg-2" style="text-align: center;">
+                            <a style="font-size: 20px;" href="{% url 'delete_todo' todo.id %}" class="btn">x</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <hr size="3px"/>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="row" style="margin-top: 15px;">
+                        <h5>You have no lists!</h5>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-md-9 col-lg-9">
+            <table cellspacing="0" cellpadding="0" width="70%">
+                <tr>
+                    <td>
+                       <table cellspacing="0" cellpadding="1" width="100%">
+                         <tr style="border-bottom: 1px solid #ccc">
+                            <form action="{% url 'search_item' %}" method="GET" class="form-inline">{% csrf_token %}
+                                <th class="d-flex align-items-center mb-2">
+                                    <div class="form-group">
+                                        <input name="text_search" type="text" placeholder="Search item" class="form-control">
+                                        <input type="hidden" name="search_todo_id" value="{{ todo_id }}">
+                                    </div>
+                                    <button type="submit" class="btn">
+                                        <img src="{% static '/images/icons8-search-24.png' %}" alt="">
+                                    </button>
+                                </th>
+                            </form>  
+                            {% if items %}
+                            <th class="align-items-center" style="text-align: right;">
+                                <form action="{% url 'sort_item' todo_id %}" method="POST">{% csrf_token %}
+                                    <button type="submit" class="btn">
+                                        <img src="{% static '/images/icons8-sort-24.png' %}" alt="">
+                                    </button>
+                                    <a class="btn" href="{% url 'delete_all_item' todo_id %}">
+                                        <img src="{% static '/images/icons8-remove-24.png' %}" alt="">
+                                    </a>
+                                </form>
+                            </th>
+                         </tr>
+                       </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="overflow:auto; max-height: 500px;">
+                            <table cellspacing="0" cellpadding="0" width="100%" class="table table-striped table-hover">
+                                {% for item in items %}
+                                <tr style="border-bottom: 1px solid #ccc">
+                                    <td width="70%">
+                                        <div style="font-size: 20px;">
+                                            {{ item.title }}
+                                        </div>
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <a style="font-size: 20px;" href="{% url 'delete_item' item.id %}" class="btn">x</a>
+                                    </td>   
+                                </tr>
+                                {% endfor %}
+                                {% else %}
+                                <tr>
+                                    <td>
+                                        <p>There are no to-do items in this list.</p>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                {% endif %}
+                            </table> 
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table cellspacing="0" cellpadding="1" width="100%">
+                            <tr>
+                                <form action="{% url 'create_item' %}" method="POST">{% csrf_token %}
+                                    <td style="text-align: left; margin-top: 10px;">
+                                        <div style="margin-top: 10px;">
+                                            <input name="item_name" type="text" class="form-control"/>
+                                            <input name="todo_id" type="hidden" value="{{ todo_id }}">
+                                        </div>
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <div style="margin-top: 10px;">
+                                            <input type="submit" class="btn btn-success" value="+ Add new item"></input>
+                                        </div>
+                                    </td>
+                                </form>
+                            </tr>
+                        </table>
+                        
+                    </td>
+                </tr>
+            </table>   
+        </div>
+    </div>
+</div>
+{% endblock content %}

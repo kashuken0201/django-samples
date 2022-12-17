@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ facility.facility_name | default:'-'}}!</h1>
+<p>{{ facility.quantity | default:'-'}}!</p>
+<a href="/facilities/list" class="btn btn-primary">Quay về</a>
+{% endblock %}

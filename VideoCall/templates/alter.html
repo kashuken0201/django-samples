@@ -1,0 +1,26 @@
+<div class="alert hide" id = "alert">
+            <span class="fas fa-exclamation-circle"></span>
+            <span class="msg" id = "alert-msg"></span>
+            <div class="close-btn" id = "btn-close-alert">
+                <span class="fas fa-times"></span>
+            </div>
+        </div>
+        <script>
+            alert = document.getElementById('alert');
+            alert_msg = document.getElementById('alert-msg');
+            btn_close_alert = document.getElementById('btn-close-alert');
+            function showAlert(msg){
+                alert_msg.innerHTML = msg;
+                alert.classList.add('show');
+                alert.classList.remove("hide");
+                alert.classList.add("showAlert");
+                setTimeout(function(){
+                    alert.classList.remove("show");
+                    alert.classList.add("hide");
+                },5000);
+            };
+            btn_close_alert.addEventListener('click', function(){
+                alert.classList.remove("showAlert");
+                alert.classList.add("hide");
+            });
+        </script>

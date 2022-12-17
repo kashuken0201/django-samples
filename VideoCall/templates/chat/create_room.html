@@ -1,0 +1,27 @@
+{% extends 'chat/base.html' %}
+{% load static %}
+{% block content %}
+<main>
+    <section id="form-container">
+        <img id="logo" src="{% static '/images/chat-icon.png' %}"/>
+        <div id="welcome-message">
+            <h1>Welcome to MyChat</h1>
+            <p>A group video calling platform made just for you!</p>
+        </div>
+        <form method="POST">{% csrf_token %}
+            <div class="field-wrapper">
+                {% for field in form %}
+                <div class="form-field">
+                    <label>{{ field.label }}</label>
+                    {{ field }}
+                </div>
+                {% endfor %}
+            </div>
+            <div class="form-field">
+                <input type="submit" value="Create Stream"/>
+            </div>
+        </form>
+    </section>
+</main>
+{% endblock content %}
+

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Hello {{ name | slugify | default:'World'}}!</h1>
+<p>My skills: {{ skills }}</p>
+<ul>
+    {% for skill in skills %}
+    {% if skill == 'django' %}
+    <li>{{ forloop.counter }} - {{ skill | capfirst | add:' Python' }}</li>
+    {% else %}
+    <li>{{ forloop.counter }} - {{ skill | capfirst }}</li>
+    {% endif %}
+    {% endfor %}
+</ul>
+{{ content | safe }}
+{% endblock %}

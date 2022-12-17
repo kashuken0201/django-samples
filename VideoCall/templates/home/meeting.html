@@ -1,0 +1,70 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-md-1 col-lg-1">
+            <img src="{% static '/images/icons8-video-call-64.png' %}" alt="" class="rounded-circle" style="width: auto;">   
+        </div>
+        <div class="col-md-11 col-lg-11 d-flex justify-content-between align-items-center">
+            <span class="h3">Meeting</span>
+        </div>
+    </div>
+    <div class="row">
+        <hr width="100%" align="center" size="5px" style="background-color: #CC00CC;"/>
+    </div>
+    <div class="row" style="margin-top: 30px;">
+        <div class="col-md-5 col-lg-5"></div>
+        <div class="col-md-1 col-lg-1">
+            <div class="text-center">
+                <a href="{% url 'create_room' %}">
+                    <div class="rounded" style="background-color: #3399FF;">
+                        <img src="{% static '/images/icons8-video-call-48.png' %}" alt="" class="rounded-circle" style="width: auto;">   
+                    </div>
+                </a>
+                <div style="margin-top: 15px;">
+                    <span class="h6">Create a meeting</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1 col-lg-1">
+            <div class="text-center">
+                <a href="{% url 'join_room' %}">
+                    <div class="rounded" style="background-color: #3399FF;">
+                        <img src="{% static '/images/icons8-people-48.png' %}" alt="" class="rounded-circle" style="width: auto;">   
+                    </div>
+                </a>
+                <div style="margin-top: 15px;">
+                    <span class="h6" >Join Room</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5 col-lg-5"></div>
+    </div>
+
+    <div class="row" style="margin-top: 50px;">
+        <table cellspacing="0" cellpadding="0" width="100%" class="table table-striped table-hover">
+            <thead>
+                <th>Date</th>
+                <th>ID</th>
+                <th>Room Name</th>
+                <th>Room</th> 
+            </thead>
+            <tbody>
+                {% for room in rooms %}
+                <tr>
+                    <td>{{ room.date }}</td>
+                    <td>{{ room.id }}</td>
+                    <td>{{ room.name }}</td>
+                    <td>{{ room.room_name }}</td>
+                    <td>
+                        <a href="{% url 'room' room.id %}" class="btn btn-success">Join Room</a>
+                        <a href="{% url 'delete_room' room.id %}" class="btn btn-danger">Delete Room</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}

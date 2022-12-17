@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<form class="form">
+    <div class="row">
+        <div class="col-auto">
+            <input type="text" name="keyword" placeholder="Keyword" class="form-control">
+        </div>
+        <div class="col-auto">
+            <input type="submit" name="search" class="btn btn-primary" value="Search">
+        </div>
+    </div>
+</form>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Room</th>
+        <th><a href="{% url 'create_new_facility' %}" class="btn btn-success">Add</a></th>
+    </thead>
+    <tbody>
+        {% for facility in facilities %}
+        <tr>
+            <td>
+                <a href="{% url 'detail_facility' facility.id %}">{{ facility.facility_name }}</a>
+            </td>
+            <td>{{ facility.quantity | default:'-'}}</td>
+            <td>{{ facility.room | default:'-'}}</td>
+            <td>
+                <a href="{% url 'update_facility' facility.id %}" class="btn btn-primary">Update</a>
+                <a href="{% url 'delete_facility' facility.id %}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="/" class="btn btn-primary">Quay về</a>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Phòng {{ room.room_name }}</h1>
+<table class="table table-striped table-hover">
+    <thead>
+        <th>Name</th>
+        <th>Quantity</th>
+    </thead>
+    <tbody>
+        {% for facility in facilities %}
+        <tr>
+            <td>{{ facility.facility_name }}</td>
+            <td>{{ facility.quantity | default:'-'}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="/facilities/room" class="btn btn-primary">Quay về</a>
+{% endblock %}

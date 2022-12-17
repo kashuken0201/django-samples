@@ -1,0 +1,47 @@
+{% extends 'chat/base.html' %}
+{% load static %}
+{% block content %}
+<main>
+    {% if error %}
+        <script>
+            showAlert('{{ error }}');
+        </script>
+    {% endif %}
+    <section id="form-container">
+        <img id="logo" src="{% static '/images/chat-icon.png' %}"/>
+        <div id="welcome-message">
+            <h1>Welcome to MyChat</h1>
+            <p>A group video calling platform made just for you!</p>
+        </div>
+        <form method="POST">{% csrf_token %}
+            <div class="field-wrapper">
+                <div class="form-field">
+                    <label>Room:</label>
+                    <input name="room_id" placeholder="Enter a room id here" type="number" min="0"/>
+                </div>
+                <div class="form-field">
+                    <label>Password:</label>
+                    <input name="password" placeholder="Enter your password here"  type="password"/>
+                </div>
+                {% if request.session.user_id is None %}
+                <div class="form-field">
+                    <label>Name:</label>
+                    <input name="username" placeholder="Enter your name here"/>
+                </div>
+                {% endif %}
+                <div class="form-field">
+                    <input type="submit" value="Join Stream"/>
+                </div>
+            </div>
+        </form>
+        {% if request.session.user_id is None %}
+        <div class="form-field" style="text-align: center;"><span>or</span></div>
+        <div class="field-wrapper">
+            <a href="{% url 'login' %}" class="btn btn-success" style="width: 100%;">Login</a>
+            <center><a href="{% url 'register' %}">Create an account</a></center>
+        </div>
+        {% endif %}
+    </section>
+</main>
+{% endblock content %}
+

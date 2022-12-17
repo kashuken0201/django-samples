@@ -1,0 +1,35 @@
+{% extends 'chat/base.html' %}
+{% load static %}
+{% block content %}
+<main>
+    {% if error %}
+        <script>
+            showAlert('{{ error }}');
+        </script>
+    {% endif %}
+    <section id="form-container">
+        <img id="logo" src="{% static '/images/chat-icon.png' %}"/>
+        <div id="welcome-message">
+            <h1>Log in to MyChat</h1>
+            <p>A group video calling platform made just for you!</p>
+        </div>
+        <form method="POST">{% csrf_token %}
+            <div class="field-wrapper">
+                {% for field in form %}
+                    <div class="form-field">
+                        <label>{{ field.label }}</label>
+                        {{ field }}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="field-wrapper">
+                <div class="form-field">
+                    <input type="submit" value="Log in"/>
+                </div>
+                <div class="form-field" style="text-align: center;">
+                    <a href="{% url 'index' %}">Go back</a>
+                </div>
+            </div>
+    </section>
+</main>
+{% endblock content %}

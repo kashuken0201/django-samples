@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>MyChat</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+    <link rel='stylesheet' type='text/css' media='screen' href="{% static '/css/main.css' %}">
+    <link rel='stylesheet' type='text/css' media='screen' href="{% static '/css/styles1.css' %}">
+</head>
+<body>
+<main>
+    <!-- <div onload="join()"></div> -->
+    <section id="room-name-wrapper">
+    <h4 style = "margin:0">
+        Room Name: <span id="room-name">{{room.name}}</span> 
+        <span style = "margin-left:20px">Room ID:<span id="room-id">{{room.id}}</span> </span> <br>
+    </h4>
+    </section>
+    <section class = 'chat-main'>
+        <section id="video-streams">
+            <div class="video-container" id="video-container">
+                <div class="video-player">
+                    <video class="video-player" id="local-video"></video>
+                </div>
+                <div class="username-wrapper">
+                    <span class="user-name" id="username">{{user.name}}</span>
+                    <input type="hidden" id="user-id" value="{{user.id}}">
+                </div>
+            </div>
+        </section>
+        <section class="frame-chat">
+            <div class="chat-messages" id = "message-list"> 
+            </div>
+            <div class="chat-form-container">
+                <input id="msg" type="text" placeholder="Enter Message" required="" autocomplete="off">
+                <button class="btn" id = "btn-send"><i class="fas fa-paper-plane"></i> Send</button>
+            </div>
+        </section>
+    </section>
+
+    <section id="controls-wrapper">
+        <div class="icon-wrapper">
+            <img class="control-icon" id="btn-toggle-audio" src="{% static '/images/microphone.svg' %}" />
+        </div>
+
+        <div class="icon-wrapper">
+            <img class="control-icon" id="btn-toggle-video" src="{% static '/images/video.svg' %}" />
+        </div>
+
+        <div class="icon-wrapper">
+            <a href="{% url 'index' %}">
+                <img class="control-icon" id="leave-btn" src="{% static '/images/leave.svg' %}" />
+            </a>
+        </div>
+    </section>
+</main>
+{% comment %} <script src="{% static '/js/main.js' %}"></script> {% endcomment %}
+
+<script src="{% static '/ts/main.ts' %}" type="text/typescript"></script>
+<script src="https://rawgit.com/Microsoft/TypeScript/master/lib/typescriptServices.js"></script>
+<script src="https://rawgit.com/basarat/typescript-script/master/transpiler.js"></script>
+
+</body>
+</html>

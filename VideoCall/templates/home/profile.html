@@ -1,0 +1,52 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-md-1 col-lg-1">
+            <img src="{% static '/images/icons8-more-info-64.png' %}" alt="" class="rounded-circle" style="width: auto;">   
+        </div>
+        <div class="col-md-11 col-lg-11 d-flex justify-content-between align-items-center">
+            <span class="h3">Profile</span>
+        </div>
+    </div>
+    <div class="row">
+        <hr width="100%" align="center" size="5px" style="background-color: #CC00CC;"/>
+    </div>
+    <div class="row" style="margin-top: 30px;">
+        <div class="row" style="margin-left: 10px;">
+            <div class="col-md-1 col-lg-1"></div>
+            <div class="col-md-1 col-lg-1 d-flex justify-content-between align-items-center">
+                <img src="/{{ user.avatar }}" class="rounded-circle" style="width: 100px; height: 100px;">
+            </div>
+            <div class="col-md-10 col-lg-10 d-flex justify-content-between align-items-center">
+                <span class="h5" style='text-align: center;height: 100px;line-height: 100px;'>{{ user.fullname }}</span>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 20px">
+            <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+                    {% for field in form %}
+                    <div class="row mb-5">
+                        <div class="col-md-1 col-lg-1"></div>
+                        <div class="form-field col-md-1 col-lg-1">
+                            <label>{{ field.label }}</label>
+                        </div>
+                        <div class="form-field col-md-8 col-lg-8">
+                            {{ field }}
+                        </div>
+                        <div class="col-md-2 col-lg-2"></div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="row">
+                    <div class="col-md-5 col-lg-5"></div>
+                        <div class="form-field col-md-2 col-lg-2">
+                            <input type="submit" value="Save" class="btn btn-primary" style="width: 100px"/>
+                        </div>
+                    <div class="col-md-5 col-lg-5"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="POST">{% csrf_token %}
+    <h3>Do you want to delete the student "{{ student.name }}"?</h3>
+    <input class="btn btn-danger" type="submit" value="Yes" />
+    <a href="/students" class="btn btn-primary">Cancel</a>
+</form>
+{% endblock %}

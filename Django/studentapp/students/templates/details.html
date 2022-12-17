@@ -1,0 +1,5 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1> Hello {{ student.name || default:'World' }}!</h1>
+<p>Code: {{ student.address }}</p>
+{% endblock %}

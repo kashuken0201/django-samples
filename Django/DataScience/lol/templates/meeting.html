@@ -1,0 +1,263 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="row" style="margin-top: 30px;">
+        <span class="h3" style="color: #299961; text-align: center;">PREDICT THE RATE OF WINNING OF THE GAME</span>
+    </div>
+    <div class="row">
+        <hr width="100%" align="center" size="5px" style="background-color: black;"/>
+    </div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-2">
+            <span class="h4">Blue Team</span>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-2">
+            <span class="h4">Red Team</span>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <div class="row">
+        <form method="POST">{% csrf_token %}
+            <div class="row mb-3">
+                <div class="col-md-3"></div>
+                <div class="col-md-1">
+                    <span class="h6">Champ 1:</span>
+                </div>
+                <div class="col-md-2">
+                    <input id="blue1" name="b1" type="hidden"/>
+                    <input name="blue1" list="champions" placehoder="Champion name"/>
+                    <datalist id="champions">
+                        {% for champ in champs %}
+                        <option>
+                            {{ champ.champ_name }}
+                        </option>
+                        {% endfor %}
+                    </datalist>
+                </div>
+                <div class="col-md-1">
+                    <span class="h6">Champ 6:</span>
+                </div>
+                <div class="col-md-2">
+                    <input id="red1" name="r1" type="hidden"/>
+                    <input name="red1" list="champions" placehoder="Champion name"/>
+                    <datalist id="champions">
+                        {% for champ in champs %}
+                        <option>
+                            {{ champ.champ_name }}
+                        </option>
+                        {% endfor %}
+                    </datalist>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-3"></div>
+                <div class="col-md-1">
+                    <span class="h6">Champ 2:</span>
+                </div>
+                <div class="col-md-2">
+                    <input id="blue2" name="b2" type="hidden"/>
+                    <input name="blue2" list="champions" placehoder="Champion name"/>
+                    <datalist id="champions">
+                        {% for champ in champs %}
+                        <option>
+                            {{ champ.champ_name }}
+                        </option>
+                        {% endfor %}
+                    </datalist>
+                </div>
+                <div class="col-md-1">
+                    <span class="h6">Champ 7:</span>
+                </div>
+                <div class="col-md-2">
+                    <input id="red2" name="r2" type="hidden"/>
+                    <input name="red2" list="champions" placehoder="Champion name"/>
+                    <datalist id="champions">
+                        {% for champ in champs %}
+                        <option>
+                            {{ champ.champ_name }}
+                        </option>
+                        {% endfor %}
+                    </datalist>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-3"></div>
+                <div class="col-md-1">
+                    <span class="h6">Champ 3:</span>
+                </div>
+                <div class="col-md-2">
+                    <input id="blue3" name="b3" type="hidden"/>
+                    <input name="blue3" list="champions" placehoder="Champion name"/>
+                    <datalist id="champions">
+                        {% for champ in champs %}
+                        <option>
+                            {{ champ.champ_name }}
+                        </option>
+                        {% endfor %}
+                    </datalist>
+                </div>
+                <div class="col-md-1">
+                    <span class="h6">Champ 8:</span>
+                </div>
+                <div class="col-md-2">
+                    <input id="red3" name="r3" type="hidden"/>
+                    <input name="red3" list="champions" placehoder="Champion name"/>
+                    <datalist id="champions">
+                        {% for champ in champs %}
+                        <option>
+                            {{ champ.champ_name }}
+                        </option>
+                        {% endfor %}
+                    </datalist>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-3"></div>
+                <div class="col-md-1">
+                    <span class="h6">Champ 4:</span>
+                </div>
+                <div class="col-md-2">
+                    <input id="blue4" name="b4" type="hidden"/>
+                    <input name="blue4" list="champions" placehoder="Champion name"/>
+                    <datalist id="champions">
+                        {% for champ in champs %}
+                        <option>
+                            {{ champ.champ_name }}
+                        </option>
+                        {% endfor %}
+                    </datalist>
+                </div>
+                <div class="col-md-1">
+                    <span class="h6">Champ 9:</span>
+                </div>
+                <div class="col-md-2">
+                    <input id="red4" name="r4" type="hidden"/>
+                    <input name="red4" list="champions" placehoder="Champion name"/>
+                    <datalist id="champions">
+                        {% for champ in champs %}
+                        <option>
+                            {{ champ.champ_name }}
+                        </option>
+                        {% endfor %}
+                    </datalist>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-3"></div>
+                <div class="col-md-1">
+                    <span class="h6">Champ 5:</span>
+                </div>
+                <div class="col-md-2">
+                    <input id="blue5" name="b5" type="hidden"/>
+                    <input name="blue5" list="champions" placehoder="Champion name"/>
+                    <datalist id="champions">
+                        {% for champ in champs %}
+                        <option>
+                            {{ champ.champ_name }}
+                        </option>
+                        {% endfor %}
+                    </datalist>
+                </div>
+                <div class="col-md-1">
+                    <span class="h6">Champ 10:</span>
+                </div>
+                <div class="col-md-2">
+                    <input id="red5" name="r5" type="hidden"/>
+                    <input name="red5" list="champions" placehoder="Champion name"/>
+                    <datalist id="champions">
+                        {% for champ in champs %}
+                        <option>
+                            {{ champ.champ_name }}
+                        </option>
+                        {% endfor %}
+                    </datalist>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row">
+                <div class="row mb-3">
+                    <div class="col-md-5"></div>
+                    <div class="col-md-2">
+                        <input class="btn btn-success" type="submit" value="Result" style="margin-left: 30%;">
+                    </div>
+                    <div class="col-md-5"></div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-5"></div>
+                    <div class="col-md-2">
+                        {% if result is not None %}
+                        <span style="margin-left: 30%;" class="h5">{{ result }}</span>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-5"></div>
+                </div>
+            </div>
+        </form>
+        <script>
+            let blue1 = document.getElementsByName('blue1')[0]
+            let blue2 = document.getElementsByName('blue2')[0]
+            let blue3 = document.getElementsByName('blue3')[0]
+            let blue4 = document.getElementsByName('blue4')[0]
+            let blue5 = document.getElementsByName('blue5')[0]
+
+            let red1 = document.getElementsByName('red1')[0]
+            let red2 = document.getElementsByName('red2')[0]
+            let red3 = document.getElementsByName('red3')[0]
+            let red4 = document.getElementsByName('red4')[0]
+            let red5 = document.getElementsByName('red5')[0]
+
+            let _blue1 = document.getElementById('blue1')
+            let _blue2 = document.getElementById('blue2')
+            let _blue3 = document.getElementById('blue3')
+            let _blue4 = document.getElementById('blue4')
+            let _blue5 = document.getElementById('blue5')
+
+            let _red1 = document.getElementById('red1')
+            let _red2 = document.getElementById('red2')
+            let _red3 = document.getElementById('red3')
+            let _red4 = document.getElementById('red4')
+            let _red5 = document.getElementById('red5')
+
+            blue1.addEventListener('input', function(){
+                    _blue1.value = this.value
+            })
+            blue2.addEventListener('input', function(){
+                    _blue2.value = this.value
+            })  
+            blue3.addEventListener('input', function(){
+                    _blue3.value = this.value
+            })  
+            blue4.addEventListener('input', function(){
+                    _blue4.value = this.value
+            })  
+            blue5.addEventListener('input', function(){
+                    _blue5.value = this.value
+            }) 
+            
+            red1.addEventListener('input', function(){
+                    _red1.value = this.value
+            })   
+            red2.addEventListener('input', function(){
+                    _red2.value = this.value
+            })    
+            red3.addEventListener('input', function(){
+                    _red3.value = this.value
+            })    
+            red4.addEventListener('input', function(){
+                    _red4.value = this.value
+            })    
+            red5.addEventListener('input', function(){
+                    _red5.value = this.value
+            })    
+
+        </script>
+    </div>
+</div>
+{% endblock content %}
